@@ -28,17 +28,38 @@ class TreeNode:
 		self.print_tree(root.right,lst)
 		
 		return lst
+
 	def two_sum(self, root, k, nums = set()):
 		print(nums)
 		if not root:
 			return
 		self.two_sum(root.left, k, nums)
 		if k - root.val in nums:
-			#print('hi', k-root.val, root.val)
 			return True
 		else:
 			nums.add(root.val)
 		return self.two_sum(root.right, k, nums)
+	
+	def kthSmallest(self, root, k: int) -> int:
+		self.k = k
+		self.res = None
+		self.found = False
+		self.helper(root)
+		return self.res
+
+	def helper(self, node):
+		#exit as soon as possible
+		if self.found:
+			return
+		if not node:
+			return
+		self.helper(node.left)
+		self.k -= 1
+		if self.k == 0:
+			self.res = node.val
+			self.found = True
+			return
+		self.helper(node.right)
 		
 	# def pretty_print(self, root, spacing = 5, height = 0):
 	# 	char_dict = {'left':'/', 'right':'"\\"', 'space': ' '*spacing}
@@ -55,17 +76,17 @@ def populate_tree():
 	root = new_tree
 	new_tree.insert_element(root, 5)
 	new_tree.insert_element(root, 6)
-	new_tree.insert_element(root,3)
-	new_tree.insert_element(root,1)
-	new_tree.insert_element(root,7)
+	new_tree.insert_element(root, 3)
+	new_tree.insert_element(root, 1)
+	new_tree.insert_element(root, 7)
 	return new_tree
 
 #new_tree = new_tree.insert_element(3)
 
 
 tree = populate_tree()
-#tree.pretty_print(tree)
-print(tree.two_sum(tree, 9))
+print(tree.print_tree(tree))
+print(tree.kthSmallest(tree, 2))
 
 #print(new_tree.print_tree(root))
 #print('"\\"')
