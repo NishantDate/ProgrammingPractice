@@ -28,11 +28,26 @@ class TreeNode:
 		self.print_tree(root.right,lst)
 		
 		return lst
-	def pretty_print(self, root, spacing = 5):
-		char_dict = {'left':'/', 'right':'"\\"', 'space': ' '*spacing}
-
-		print ([char for char in char_dict.values()])
-		print("some spaces", " " *spacing, "ending")
+	def two_sum(self, root, k, nums = set()):
+		print(nums)
+		if not root:
+			return
+		self.two_sum(root.left, k, nums)
+		if k - root.val in nums:
+			#print('hi', k-root.val, root.val)
+			return True
+		else:
+			nums.add(root.val)
+		return self.two_sum(root.right, k, nums)
+		
+	# def pretty_print(self, root, spacing = 5, height = 0):
+	# 	char_dict = {'left':'/', 'right':'"\\"', 'space': ' '*spacing}
+	# 	print(" "*(20 - (height * spacing)), end = '')
+	# 	for node in range(2 ** height):
+	# 		print(root.val , " " * spacing, end = '')
+	# 	for node.
+	# 	print("\n")
+		
 
 	
 def populate_tree():
@@ -49,7 +64,8 @@ def populate_tree():
 
 
 tree = populate_tree()
-tree.pretty_print(tree)
+#tree.pretty_print(tree)
+print(tree.two_sum(tree, 9))
 
 #print(new_tree.print_tree(root))
 #print('"\\"')
