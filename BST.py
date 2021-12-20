@@ -40,26 +40,30 @@ class TreeNode:
 			nums.add(root.val)
 		return self.two_sum(root.right, k, nums)
 	
-	def kthSmallest(self, root, k: int) -> int:
+	def kthSmallest(self, root, k):
 		self.k = k
-		self.res = None
 		self.found = False
+		self.res = None
 		self.helper(root)
 		return self.res
 
-	def helper(self, node):
-		#exit as soon as possible
-		if self.found:
+	def helper(self, root):
+		if (not root):
 			return
-		if not node:
-			return
-		self.helper(node.left)
+		if (self.found):return self.res
+
+		self.helper(root.left)
+
+		if (self.found):return self.res
+
 		self.k -= 1
-		if self.k == 0:
-			self.res = node.val
+		if self.k <= 0:
 			self.found = True
+			self.res = root.val
 			return
-		self.helper(node.right)
+		if (self.found):return self.res
+		self.helper(root.right)
+
 		
 	# def pretty_print(self, root, spacing = 5, height = 0):
 	# 	char_dict = {'left':'/', 'right':'"\\"', 'space': ' '*spacing}
