@@ -7,3 +7,12 @@ class Solution:
         new_nums[0: new_end + 1] = nums[(len(nums) - new_start):]
         print(f"{nums[(len(nums) - new_start):]} some more nums")
         return new_nums
+    def moveZeroes(self, nums) -> None:
+        non_zeroes = []
+        zeroes = []
+        while(len(nums)):
+            if nums[0] == 0:
+                zeroes.append(nums.pop(0))
+            else:
+                non_zeroes.append(nums.pop(0))
+        return non_zeroes + zeroes
