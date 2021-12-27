@@ -23,7 +23,7 @@ class Solution:
         ret = []
         i = 0
         least = numbers[0]
-        while numbers[i] + least <= target:
+        while numbers[i] + least <= target
             if (target - numbers[i]) in numSet.keys():
                 ret.append(numSet[target - numbers[i]])
                 ret.append(i + 1)
@@ -34,6 +34,13 @@ class Solution:
                 break
         return ret
 
-A = [-1, 0 ]
-some_solution = Solution()
-print(some_solution.twoSum(A, -1))
+    def reverseString(self, s: List[str]) -> None:
+        end = len(s) - 1
+        start = 0 
+        
+        while(end >= start):
+            s[end], s[start] = s[start], s[end]
+            
+            end -= 1
+            start += 1
+
