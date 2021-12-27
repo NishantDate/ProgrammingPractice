@@ -7,6 +7,7 @@ class Solution:
         new_nums[0: new_end + 1] = nums[(len(nums) - new_start):]
         print(f"{nums[(len(nums) - new_start):]} some more nums")
         return new_nums
+
     def moveZeroes(self, nums) -> None:
         non_zeroes = []
         zeroes = []
@@ -16,3 +17,23 @@ class Solution:
             else:
                 non_zeroes.append(nums.pop(0))
         return non_zeroes + zeroes
+
+    def twoSum(self, numbers, target: int):
+        numSet = {}
+        ret = []
+        i = 0
+        least = numbers[0]
+        while numbers[i] + least <= target:
+            if (target - numbers[i]) in numSet.keys():
+                ret.append(numSet[target - numbers[i]])
+                ret.append(i + 1)
+            else:
+                numSet[numbers[i]] = i + 1
+            i += 1
+            if i >= len(numbers):
+                break
+        return ret
+
+A = [-1, 0 ]
+some_solution = Solution()
+print(some_solution.twoSum(A, -1))
